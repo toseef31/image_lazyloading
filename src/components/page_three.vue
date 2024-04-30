@@ -13,12 +13,13 @@
         <div class="row">
         <div class="col-md-3">
           <!-- Column 1 content -->
-          <img @error="imageLoadError" 
-          @click.once= "loadSelectedResearcher(dataObj)"
-          class="person-image clickable-image" 
-          alt="Person Image"
+         
+          <LazyImage :src="dataObj.THUMBNAIL" 
+          :placeholder="dataObj.PRIMARY_NAME" 
+          alt="person_img" class="person-image clickable-image" 
           :style="{ width: imageSize + 'px', height: 'auto' }" 
-          v-lazy= "dataObj.THUMBNAIL">
+          @click.once= "loadSelectedResearcher(dataObj)" 
+          @error="imageLoadError"/>
         </div>
         <div class="col-md-9">
       
@@ -146,10 +147,11 @@
   
   <script>
     import axios from "axios";
+    import LazyImage from "./LazyImage.vue"
 
   export default {
     components: {
-
+      LazyImage
   },
     name: 'MyPage',
     data(){
